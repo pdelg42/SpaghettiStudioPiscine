@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://q8k1dww5kmfu"]
+
+[ext_resource type="Texture2D" uid="uid://knmx4yp1521s" path="res://Taxi.png" id="1_h0oao"]
+[ext_resource type="Script" path="res://mandatory_scripts/Taxi.gd" id="1_q6gd6"]
+[ext_resource type="PackedScene" uid="uid://c24e3cn6x1y5w" path="res://utils/walls.tscn" id="3_xcr2d"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_86rqb"]
+radius = 5.99345
+height = 15.9997
+
+[node name="Mandatory" type="Node2D"]
+metadata/_edit_vertical_guides_ = [256.0]
+metadata/_edit_horizontal_guides_ = [144.0]
+
+[node name="Taxi" type="CharacterBody2D" parent="."]
+position = Vector2(132, 74)
+script = ExtResource("1_q6gd6")
+
+[node name="Sprite" type="Sprite2D" parent="Taxi"]
+texture = ExtResource("1_h0oao")
+hframes = 2
+vframes = 2
+
+[node name="Shape" type="CollisionShape2D" parent="Taxi"]
+rotation = 1.57722
+shape = SubResource("CapsuleShape2D_86rqb")
+
+[node name="Walls" parent="." instance=ExtResource("3_xcr2d")]
