@@ -61,6 +61,10 @@ Questo è possibile farlo facendo riferimento alla finestra di [Project Settings
 Gestite le dimensioni della [Viewport](https://docs.godotengine.org/en/stable/tutorials/rendering/viewports.html) principale si può procedere all'inserimento dei muri utilizzando un nuovo nodo: [StaticBody2D](https://docs.godotengine.org/en/stable/classes/class_staticbody2d.html); questo nodo non vene disturbato da forze di altri oggetti, quindi è perfetto utilizzarlo per muri o piattaforme.
 Un nodo che ha bisogno di una shape può gestire più shapes, premesso questo si può procedere a creare il muro che contorna il nostro limite utilizzando benissimo un solo static body per tutti le shape necessarie a creare anche la propria mappa.
 
-> #### Attenzione
+> #### Tip
 >
 > Se hai modificato la `scale` della tua finestra è consigliabile utilizzare dei **riferimenti** che possono essere creati cliccando e trascinando l'angolo grigio ![riferimenti](/Week0/readme/assets/riferimenti.png "Puoi trascinare il quadratino grigio per poter ottenere dei riferimenti") in alto a sinistra. Per rendere piu preciso il posizionamento puoi aggingere lo snap per la griglia sul menù del visualizzatore 2D ![griglia](/Week0/readme/assets/attention.png)
+
+È possibile valutare diversi modi per gestire i limiti per il movimento dei corpi, nel progetto (vista la dimensione della mappa) è stato deciso di usare un diverso oggetto.
+
+### Scripting
