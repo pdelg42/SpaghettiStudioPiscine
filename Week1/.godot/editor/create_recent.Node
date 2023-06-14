@@ -1,0 +1,11 @@
+AnimatedSprite2D
+Sprite2D
+Node2D
+Node
+GPUParticles2D
+CollisionShape2D
+Area2D
+StaticBody2D
+TileMap
+RemoteTransform2D
+Camera2D

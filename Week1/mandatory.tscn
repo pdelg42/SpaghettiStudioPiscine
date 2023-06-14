@@ -1,0 +1,109 @@
+[gd_scene load_steps=9 format=3 uid="uid://q8k1dww5kmfu"]
+
+[ext_resource type="Script" path="res://mandatory_scripts/mandatory.gd" id="1_jkvhw"]
+[ext_resource type="PackedScene" uid="uid://sknnnm7xlg40" path="res://Player/player.tscn" id="1_xi3o4"]
+[ext_resource type="PackedScene" uid="uid://tpdo8mmql4i2" path="res://maps/map1.tscn" id="2_orsug"]
+[ext_resource type="Script" path="res://mandatory_scripts/Camera.gd" id="3_ihhll"]
+[ext_resource type="PackedScene" uid="uid://c24e3cn6x1y5w" path="res://utils/walls.tscn" id="3_xcr2d"]
+[ext_resource type="PackedScene" uid="uid://8b1jvn5vmuf1" path="res://utils/booster.tscn" id="6_dg7yg"]
+[ext_resource type="PackedScene" uid="uid://7pni1codto61" path="res://utils/obstacle.tscn" id="6_yx7d0"]
+[ext_resource type="PackedScene" uid="uid://t1m6d0h2jhfi" path="res://utils/Sloower.tscn" id="7_bjqkx"]
+
+[node name="Mandatory" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_jkvhw")
+metadata/_edit_vertical_guides_ = [256.0]
+metadata/_edit_horizontal_guides_ = [144.0]
+
+[node name="Map" parent="." instance=ExtResource("2_orsug")]
+
+[node name="Walls" parent="." instance=ExtResource("3_xcr2d")]
+scale = Vector2(2.56, 3.88)
+
+[node name="Player" parent="." instance=ExtResource("1_xi3o4")]
+
+[node name="CameraTrans" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera")
+update_rotation = false
+update_scale = false
+
+[node name="Obstacles" type="Node2D" parent="."]
+
+[node name="Obstacle" parent="Obstacles" instance=ExtResource("6_yx7d0")]
+position = Vector2(104, 80)
+
+[node name="Obstacle2" parent="Obstacles" instance=ExtResource("6_yx7d0")]
+position = Vector2(249, 144)
+
+[node name="Obstacle3" parent="Obstacles" instance=ExtResource("6_yx7d0")]
+position = Vector2(337, 184)
+
+[node name="Obstacle4" parent="Obstacles" instance=ExtResource("6_yx7d0")]
+position = Vector2(393, 224)
+
+[node name="Obstacle5" parent="Obstacles" instance=ExtResource("6_yx7d0")]
+position = Vector2(185, 296)
+
+[node name="Obstacle6" parent="Obstacles" instance=ExtResource("6_yx7d0")]
+position = Vector2(345, 320)
+
+[node name="Obstacle7" parent="Obstacles" instance=ExtResource("6_yx7d0")]
+position = Vector2(585, 152)
+
+[node name="Obstacle8" parent="Obstacles" instance=ExtResource("6_yx7d0")]
+position = Vector2(121, 416)
+
+[node name="Obstacle9" parent="Obstacles" instance=ExtResource("6_yx7d0")]
+position = Vector2(441, 408)
+
+[node name="Obstacle10" parent="Obstacles" instance=ExtResource("6_yx7d0")]
+position = Vector2(545, 272)
+
+[node name="Boosters" type="Node2D" parent="."]
+
+[node name="Booster" parent="Boosters" instance=ExtResource("6_dg7yg")]
+position = Vector2(13, 120)
+
+[node name="Booster2" parent="Boosters" instance=ExtResource("6_dg7yg")]
+position = Vector2(104, 200)
+
+[node name="Booster3" parent="Boosters" instance=ExtResource("6_dg7yg")]
+position = Vector2(337, 5)
+
+[node name="Booster4" parent="Boosters" instance=ExtResource("6_dg7yg")]
+position = Vector2(640, 328)
+
+[node name="Booster5" parent="Boosters" instance=ExtResource("6_dg7yg")]
+position = Vector2(576, 456)
+
+[node name="Sloowers" type="Node2D" parent="."]
+
+[node name="Sloower" parent="Sloowers" instance=ExtResource("7_bjqkx")]
+position = Vector2(198, 200)
+
+[node name="Sloower2" parent="Sloowers" instance=ExtResource("7_bjqkx")]
+position = Vector2(584, 87)
+
+[node name="Sloower3" parent="Sloowers" instance=ExtResource("7_bjqkx")]
+position = Vector2(440, 312)
+
+[node name="Sloower4" parent="Sloowers" instance=ExtResource("7_bjqkx")]
+position = Vector2(344, 456)
+
+[node name="Sloower5" parent="Sloowers" instance=ExtResource("7_bjqkx")]
+position = Vector2(129, 528)
+
+[node name="Sloower6" parent="Sloowers" instance=ExtResource("7_bjqkx")]
+position = Vector2(597, 531)
+
+[node name="Camera" type="Camera2D" parent="."]
+limit_smoothed = true
+position_smoothing_enabled = true
+script = ExtResource("3_ihhll")
+
+[node name="CameraLimits" type="Node" parent="."]
+
+[node name="CameraTopLeft" type="Node2D" parent="CameraLimits"]
+
+[node name="CameraBottomRight" type="Node2D" parent="CameraLimits"]
+position = Vector2(656, 560)

@@ -1,0 +1,10 @@
+res://mandatory.tscn
+res://shaders/obstacle.tres
+res://utils/walls.tscn
+res://maps/map1.tscn
+res://maps/Elems/skyscraper.tscn
+res://Player/player.tscn
+res://utils/obstacle.tscn
+res://utils/booster.tscn
+res://utils/Sloower.tscn
+res://utils/obstacles/obstacle.gd

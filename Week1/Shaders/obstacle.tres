@@ -1,0 +1,26 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://ep5tk36kov2j"]
+
+[ext_resource type="Shader" path="res://Shaders/obstacle.gdshader" id="1_ju87a"]
+
+[sub_resource type="Gradient" id="Gradient_5ws6k"]
+interpolation_mode = 2
+colors = PackedColorArray(0.384314, 0.270588, 0.380392, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_772hb"]
+frequency = 0.033
+fractal_type = 3
+fractal_octaves = 8
+fractal_gain = 0.4
+fractal_weighted_strength = 0.04
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1kegq"]
+width = 64
+height = 64
+color_ramp = SubResource("Gradient_5ws6k")
+noise = SubResource("FastNoiseLite_772hb")
+
+[resource]
+shader = ExtResource("1_ju87a")
+shader_parameter/direction = Vector2(0, 0.5)
+shader_parameter/speed = 2.0
+shader_parameter/noise = SubResource("NoiseTexture2D_1kegq")

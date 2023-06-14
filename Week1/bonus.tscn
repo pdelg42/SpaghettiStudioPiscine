@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkifq0vp3hw6t"]
+
+[ext_resource type="PackedScene" uid="uid://sknnnm7xlg40" path="res://Player/player.tscn" id="1_3xung"]
+[ext_resource type="PackedScene" uid="uid://c24e3cn6x1y5w" path="res://utils/walls.tscn" id="2_r645a"]
+
+[node name="bonus" type="Node2D"]
+metadata/_edit_vertical_guides_ = [256.0, 256.0]
+metadata/_edit_horizontal_guides_ = [144.0, 144.0]
+
+[node name="Player" parent="." instance=ExtResource("1_3xung")]
+
+[node name="Walls" parent="." instance=ExtResource("2_r645a")]
