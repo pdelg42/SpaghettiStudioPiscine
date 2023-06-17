@@ -1,0 +1,251 @@
+[gd_scene load_steps=23 format=3 uid="uid://dvk2cejfi8yh0"]
+
+[ext_resource type="Script" path="res://mandatory_scripts/hud.gd" id="1_dq8n1"]
+[ext_resource type="Texture2D" uid="uid://1m2js1k1bw6m" path="res://Tachimetrofull1.png" id="1_drpsd"]
+[ext_resource type="Texture2D" uid="uid://bw8u5xm5ixnjm" path="res://lancetta.png" id="2_odhr8"]
+[ext_resource type="Texture2D" uid="uid://da2edopxc5gyd" path="res://VelocimeterX2.png" id="3_3mdrv"]
+[ext_resource type="FontFile" uid="uid://bu8dmt0f30ugo" path="res://fonts/Alien Moon.ttf" id="3_yvlq1"]
+[ext_resource type="Shader" path="res://rotation.gdshader" id="4_n5dk1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kh0x5"]
+atlas = ExtResource("3_3mdrv")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7mcx"]
+atlas = ExtResource("3_3mdrv")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5nuo"]
+atlas = ExtResource("3_3mdrv")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rfb37"]
+resource_local_to_scene = true
+bg_color = Color(0.145098, 0.145098, 0.145098, 1)
+border_width_left = 1
+border_width_top = 2
+border_width_right = 1
+border_width_bottom = 2
+border_color = Color(0.254902, 0.254902, 0.254902, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 2
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 2
+corner_detail = 2
+shadow_color = Color(0, 0, 0, 0)
+anti_aliasing = false
+
+[sub_resource type="FontVariation" id="FontVariation_msot2"]
+base_font = ExtResource("3_yvlq1")
+variation_embolden = -0.36
+variation_transform = Transform2D(0.75, -0.25, 0, 3, 0, 1)
+opentype_features = {
+1801810542: 0
+}
+spacing_top = 6
+
+[sub_resource type="LabelSettings" id="LabelSettings_5kc1g"]
+line_spacing = 0.0
+font = SubResource("FontVariation_msot2")
+font_size = 6
+font_color = Color(0.835294, 0.835294, 0.835294, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_emssb"]
+shader = ExtResource("4_n5dk1")
+shader_parameter/speed = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_kftgi"]
+font = ExtResource("3_yvlq1")
+font_size = 12
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_msbu4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kivbh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q17ue"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cw4l3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8e4l1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dhj4o"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_sc4jb"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_a1qgi"]
+events = [SubResource("InputEventKey_sc4jb")]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_dq8n1")
+metadata/_edit_vertical_guides_ = [256.0]
+metadata/_edit_horizontal_guides_ = [144.0]
+
+[node name="Control" type="Control" parent="."]
+z_as_relative = false
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Velocimeter" type="TextureProgressBar" parent="Control"]
+layout_mode = 0
+offset_left = 184.0
+offset_top = 72.0
+offset_right = 248.0
+offset_bottom = 136.0
+scale = Vector2(0.756817, 0.753848)
+step = 0.1
+value = 50.0
+fill_mode = 4
+texture_under = SubResource("AtlasTexture_kh0x5")
+texture_over = SubResource("AtlasTexture_f7mcx")
+texture_progress = SubResource("AtlasTexture_r5nuo")
+texture_progress_offset = Vector2(4, 4)
+tint_under = Color(0.294118, 0.294118, 0.294118, 1)
+tint_progress = Color(0.407843, 1, 0.396078, 1)
+radial_initial_angle = 135.0
+radial_fill_degrees = 315.0
+
+[node name="Contachilometri" type="PanelContainer" parent="Control"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 156.0
+offset_top = 103.0
+offset_right = 186.0
+offset_bottom = 149.0
+scale = Vector2(1.40369, 0.388328)
+theme_override_styles/panel = SubResource("StyleBoxFlat_rfb37")
+
+[node name="Margini" type="VBoxContainer" parent="Control/Contachilometri"]
+layout_mode = 2
+
+[node name="KM" type="Label" parent="Control/Contachilometri/Margini"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_constants/line_spacing = 0
+text = " KM"
+label_settings = SubResource("LabelSettings_5kc1g")
+vertical_alignment = 1
+clip_text = true
+
+[node name="Testo" type="Label" parent="Control/Contachilometri/Margini"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "999.9"
+label_settings = SubResource("LabelSettings_5kc1g")
+horizontal_alignment = 2
+vertical_alignment = 1
+clip_text = true
+
+[node name="ContaCarburante" type="PanelContainer" parent="Control"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 222.0
+offset_top = 117.0
+offset_right = 239.0
+offset_bottom = 167.0
+scale = Vector2(1.40369, 0.388328)
+theme_override_styles/panel = SubResource("StyleBoxFlat_rfb37")
+
+[node name="Margini" type="VBoxContainer" parent="Control/ContaCarburante"]
+layout_mode = 2
+
+[node name="F" type="Label" parent="Control/ContaCarburante/Margini"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_constants/line_spacing = 0
+text = "F"
+label_settings = SubResource("LabelSettings_5kc1g")
+horizontal_alignment = 2
+vertical_alignment = 1
+clip_text = true
+
+[node name="Testo" type="Label" parent="Control/ContaCarburante/Margini"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "99"
+label_settings = SubResource("LabelSettings_5kc1g")
+horizontal_alignment = 2
+vertical_alignment = 1
+clip_text = true
+
+[node name="ValoreVelocimetro" type="PanelContainer" parent="Control"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 220.0
+offset_top = 74.0
+offset_right = 244.0
+offset_bottom = 124.0
+scale = Vector2(1.40369, 0.388328)
+theme_override_styles/panel = SubResource("StyleBoxFlat_rfb37")
+
+[node name="Margini" type="VBoxContainer" parent="Control/ValoreVelocimetro"]
+layout_mode = 2
+
+[node name="Testo" type="Label" parent="Control/ValoreVelocimetro/Margini"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "999"
+label_settings = SubResource("LabelSettings_5kc1g")
+horizontal_alignment = 2
+vertical_alignment = 1
+clip_text = true
+
+[node name="S" type="Label" parent="Control/ValoreVelocimetro/Margini"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_constants/line_spacing = 0
+text = "SP"
+label_settings = SubResource("LabelSettings_5kc1g")
+horizontal_alignment = 2
+vertical_alignment = 1
+clip_text = true
+
+[node name="Tachimetro" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 80.0
+offset_right = 256.0
+offset_bottom = 144.0
+scale = Vector2(0.76, 0.76)
+texture = ExtResource("1_drpsd")
+
+[node name="Lancetta" type="TextureRect" parent="Control/Tachimetro"]
+material = SubResource("ShaderMaterial_emssb")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_odhr8")
+
+[node name="GasDepletedCont" type="CenterContainer" parent="Control"]
+layout_mode = 0
+offset_right = 254.0
+offset_bottom = 146.0
+
+[node name="GasDepletedMessage" type="Label" parent="Control/GasDepletedCont"]
+custom_minimum_size = Vector2(144, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Gas Depleted"
+label_settings = SubResource("LabelSettings_kftgi")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="PauseActive" type="CheckButton" parent="."]
+offset_top = -44.0
+offset_right = 44.0
+offset_bottom = -20.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_msbu4")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kivbh")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_q17ue")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_cw4l3")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_8e4l1")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dhj4o")
+action_mode = 0
+shortcut = SubResource("Shortcut_a1qgi")
+
+[connection signal="toggled" from="PauseActive" to="." method="_on_pause_active_toggled"]

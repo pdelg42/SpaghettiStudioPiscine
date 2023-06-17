@@ -1,0 +1,62 @@
+[gd_scene load_steps=11 format=3 uid="uid://dhjcgm24i3qhg"]
+
+[ext_resource type="Texture2D" uid="uid://437lelx0bnph" path="res://Starting.jpg" id="1_4phhp"]
+[ext_resource type="Script" path="res://mandatory_scripts/start_window.gd" id="1_pw75c"]
+[ext_resource type="FontFile" uid="uid://bu8dmt0f30ugo" path="res://fonts/Alien Moon.ttf" id="2_ikjx5"]
+[ext_resource type="StyleBox" uid="uid://bs161yhslqrd2" path="res://Styles/AlienButton.tres" id="3_3ey8k"]
+[ext_resource type="StyleBox" uid="uid://bchomvvgnwhge" path="res://Styles/AlienButtonActive.tres" id="4_w1ivm"]
+
+[sub_resource type="FontVariation" id="FontVariation_rady1"]
+base_font = ExtResource("2_ikjx5")
+variation_embolden = 0.54
+variation_transform = Transform2D(0.5, 0, 0, 0.5, -1, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6y842"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_syy02"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="InputEventKey" id="InputEventKey_2a18p"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_ub651"]
+events = [SubResource("InputEventKey_syy02"), SubResource("InputEventKey_2a18p")]
+
+[node name="StartWindow" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_pw75c")
+metadata/_edit_vertical_guides_ = [256.0]
+metadata/_edit_horizontal_guides_ = [144.0]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 850.0
+offset_bottom = 478.0
+scale = Vector2(0.300823, 0.301216)
+texture = ExtResource("1_4phhp")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 80.0
+offset_right = 152.0
+offset_bottom = 96.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.502187, 0.99952, 0.41999, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.807843, 0.807843, 0.807843, 1)
+theme_override_fonts/font = SubResource("FontVariation_rady1")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = ExtResource("3_3ey8k")
+theme_override_styles/hover = ExtResource("3_3ey8k")
+theme_override_styles/pressed = ExtResource("4_w1ivm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6y842")
+shortcut = SubResource("Shortcut_ub651")
+text = "Start"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

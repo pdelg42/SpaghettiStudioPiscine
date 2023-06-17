@@ -1,0 +1,109 @@
+[gd_scene load_steps=15 format=3 uid="uid://7pni1codto61"]
+
+[ext_resource type="Script" path="res://utils/obstacles/obstacle.gd" id="1_56ir7"]
+[ext_resource type="Texture2D" uid="uid://byppci24ixt5r" path="res://Obstacles3.png" id="1_w4xtq"]
+[ext_resource type="Texture2D" uid="uid://b1xdxdopaf1vb" path="res://shadow.png" id="2_3duod"]
+[ext_resource type="Material" uid="uid://ep5tk36kov2j" path="res://Shaders/obstacle.tres" id="2_f4ohx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lut77"]
+radius = 7.07107
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gswcd"]
+radius = 7.0
+
+[sub_resource type="Curve" id="Curve_qtcpw"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 360), 0.0, 0.0, 0, 0, Vector2(0.957831, -360), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_y8q6g"]
+curve = SubResource("Curve_qtcpw")
+
+[sub_resource type="Gradient" id="Gradient_5b0a6"]
+offsets = PackedFloat32Array(0.222222, 1)
+colors = PackedColorArray(0.384314, 0.270588, 0.380392, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_odc1j"]
+gradient = SubResource("Gradient_5b0a6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7r8yc"]
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 100.0
+angular_velocity_min = 10.0
+angular_velocity_max = 100.0
+angular_velocity_curve = SubResource("CurveTexture_y8q6g")
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_min = 1.0
+linear_accel_max = 10.0
+damping_min = 3.16
+damping_max = 6.32
+color_ramp = SubResource("GradientTexture1D_odc1j")
+
+[sub_resource type="Gradient" id="Gradient_6wgx4"]
+offsets = PackedFloat32Array(0.00740741, 1)
+colors = PackedColorArray(0.384314, 0.270588, 0.380392, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pu06j"]
+gradient = SubResource("Gradient_6wgx4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cjlrr"]
+emission_shape = 1
+emission_sphere_radius = 8.0
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color_ramp = SubResource("GradientTexture1D_pu06j")
+
+[node name="Obstacle" type="Area2D"]
+texture_filter = 1
+collision_mask = 0
+script = ExtResource("1_56ir7")
+bonus_malus = -200.0
+
+[node name="Body" type="CollisionShape2D" parent="."]
+position = Vector2(0, 21)
+shape = SubResource("CircleShape2D_lut77")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+material = ExtResource("2_f4ohx")
+texture = ExtResource("1_w4xtq")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.439216)
+position = Vector2(0, 16)
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("2_3duod")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="HBBody" type="CollisionShape2D" parent="HurtBox"]
+visible = false
+shape = SubResource("CircleShape2D_gswcd")
+
+[node name="HitParticles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_7r8yc")
+lifetime = 0.15
+one_shot = true
+speed_scale = 0.4
+explosiveness = 1.0
+randomness = 0.22
+fixed_fps = 60
+collision_base_size = 0.0
+
+[node name="IdleParticles" type="GPUParticles2D" parent="."]
+position = Vector2(0, 7)
+process_material = SubResource("ParticleProcessMaterial_cjlrr")
+lifetime = 0.4
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]

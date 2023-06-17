@@ -1,0 +1,101 @@
+[gd_scene load_steps=13 format=3 uid="uid://cmhwc07kjtkfq"]
+
+[ext_resource type="Script" path="res://mandatory_scripts/start_window.gd" id="1_n0asu"]
+[ext_resource type="Texture2D" uid="uid://437lelx0bnph" path="res://Starting.jpg" id="2_j8l83"]
+[ext_resource type="FontFile" uid="uid://bu8dmt0f30ugo" path="res://fonts/Alien Moon.ttf" id="3_0hl62"]
+[ext_resource type="StyleBox" uid="uid://bs161yhslqrd2" path="res://Styles/AlienButton.tres" id="4_7gxax"]
+[ext_resource type="StyleBox" uid="uid://bchomvvgnwhge" path="res://Styles/AlienButtonActive.tres" id="5_ax8dp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_k2f6x"]
+font = ExtResource("3_0hl62")
+font_size = 8
+font_color = Color(0.247059, 0.937255, 0.0352941, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_rady1"]
+base_font = ExtResource("3_0hl62")
+variation_embolden = 0.54
+variation_transform = Transform2D(0.5, 0, 0, 0.5, -1, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6y842"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_syy02"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="InputEventKey" id="InputEventKey_2a18p"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_ub651"]
+events = [SubResource("InputEventKey_syy02"), SubResource("InputEventKey_2a18p")]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vow6h"]
+font = ExtResource("3_0hl62")
+font_size = 10
+font_color = Color(0.247059, 0.941176, 0.0392157, 1)
+
+[node name="EndWindow" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchor_right = 0.2
+anchor_bottom = 0.2
+offset_right = -256.0
+offset_bottom = -144.0
+script = ExtResource("1_n0asu")
+metadata/_edit_vertical_guides_ = [256.0]
+metadata/_edit_horizontal_guides_ = [144.0]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 850.0
+offset_bottom = 478.0
+scale = Vector2(0.300823, 0.301216)
+texture = ExtResource("2_j8l83")
+
+[node name="KMDone" type="Label" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 48.0
+offset_right = 88.0
+offset_bottom = 71.0
+text = "KM 999.9"
+label_settings = SubResource("LabelSettings_k2f6x")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonContainer" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 256.0
+offset_bottom = 144.0
+
+[node name="Button" type="Button" parent="ButtonContainer"]
+layout_mode = 2
+offset_left = 96.0
+offset_top = 88.0
+offset_right = 163.0
+offset_bottom = 99.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.502187, 0.99952, 0.41999, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.807843, 0.807843, 0.807843, 1)
+theme_override_fonts/font = SubResource("FontVariation_rady1")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = ExtResource("4_7gxax")
+theme_override_styles/hover = ExtResource("4_7gxax")
+theme_override_styles/pressed = ExtResource("5_ax8dp")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6y842")
+shortcut = SubResource("Shortcut_ub651")
+text = "Try Again"
+
+[node name="GameOverContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 40.0
+
+[node name="GameOver" type="Label" parent="GameOverContainer"]
+layout_mode = 2
+text = "Game Over"
+label_settings = SubResource("LabelSettings_vow6h")
+
+[connection signal="pressed" from="ButtonContainer/Button" to="." method="_on_button_pressed"]

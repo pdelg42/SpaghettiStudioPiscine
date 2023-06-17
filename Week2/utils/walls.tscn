@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c24e3cn6x1y5w"]
+
+[node name="Walls" type="StaticBody2D"]
+
+[node name="TL" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, 144, -16, 160, -16, -16, 272, -16, 256, 0, 0, 0)
+
+[node name="BD" type="CollisionPolygon2D" parent="."]
+position = Vector2(256, 144)
+rotation = 3.14159
+polygon = PackedVector2Array(0, 144, -16, 160, -16, -16, 272, -16, 256, -1.52588e-05, 0, 0)

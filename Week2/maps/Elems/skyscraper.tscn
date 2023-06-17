@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsfnc4b2wkbu4"]
+
+[ext_resource type="Texture2D" uid="uid://c3tduqf683cll" path="res://Houses.png" id="1_prpj8"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lyb4t"]
+texture = ExtResource("1_prpj8")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_w0trw"]
+sources/0 = SubResource("TileSetAtlasSource_lyb4t")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_temxd"]
+size = Vector2(48, 74)
+
+[node name="Skyscraper" type="TileMap"]
+tile_set = SubResource("TileSet_w0trw")
+format = 2
+layer_0/tile_data = PackedInt32Array(-65536, 65536, 3, -1, 0, 3, -65535, 131072, 3, -65537, 0, 2, -131072, 65536, 2, -131071, 131072, 2, -131073, 0, 2, -196608, 65536, 2, -196607, 131072, 2, -262144, 65536, 2, -262143, 131072, 2, -196609, 0, 2, -458753, 0, 2, -393217, 0, 2, -327681, 0, 2, -262145, 0, 2, -524288, 65536, 2, -458752, 65536, 2, -393216, 65536, 2, -327680, 65536, 2, -524287, 131072, 2, -458751, 131072, 2, -393215, 131072, 2, -327679, 131072, 2, -524289, 0, 1, -589823, 131072, 1, -589824, 65536, 1, -589825, 0, 0, -655360, 65536, 0, -655359, 131072, 0)
+
+[node name="Body" type="StaticBody2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="Body"]
+position = Vector2(8, -43)
+shape = SubResource("RectangleShape2D_temxd")
